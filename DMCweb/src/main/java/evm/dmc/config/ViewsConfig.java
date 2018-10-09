@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 
-
+/**
+ * Configuration class for defining views for MVC pattern
+ */
 @Configuration
 @ConfigurationProperties(prefix = "views")
 public class ViewsConfig {
 
-	/*
-	 * Config file to resolve view names
-	 */
+	/** Config file to resolve view names */
 	private final static String VIEWS_YAML_CONFIG = "views.yml";
 	
 	private String createalg;
