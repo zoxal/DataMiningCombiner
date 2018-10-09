@@ -1,6 +1,5 @@
 package evm.dmc.config.devel;
 
-
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
@@ -11,6 +10,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * Configuration class for initializing of database based on
+ * MySQL database
+ */
 @Configuration
 @Profile("devMySQL")
 public class DbDataInitializerMySQL {
