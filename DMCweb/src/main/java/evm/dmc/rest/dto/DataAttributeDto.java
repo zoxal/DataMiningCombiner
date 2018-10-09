@@ -6,9 +6,15 @@ import evm.dmc.core.api.AttributeType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * DTO for Data Attribute model
+ *
+ * @see evm.dmc.core.api.AttributeType
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class DataAttributeDto  extends ResourceSupport {
+
 	private String name;
 	
 	private AttributeType type;
