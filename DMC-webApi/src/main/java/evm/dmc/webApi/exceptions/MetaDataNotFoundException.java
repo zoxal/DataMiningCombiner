@@ -1,7 +1,7 @@
 package evm.dmc.webApi.exceptions;
 
 /**
- * Throwed when no MetaData found
+ * Throwed when no Data Set model found
  */
 public class MetaDataNotFoundException extends NotFoundException {
 
