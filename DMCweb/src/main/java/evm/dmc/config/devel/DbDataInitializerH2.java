@@ -11,6 +11,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * Configuration class for initializing of database based on
+ * in memory H2 database
+ */
 @Configuration
 @Profile("devH2")
 public class DbDataInitializerH2 {
