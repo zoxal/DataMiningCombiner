@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.Data;
 
+/**
+ * Configuration class for storing files
+ */
 @Configuration
 @Data
 public class FileStorageConfig {
