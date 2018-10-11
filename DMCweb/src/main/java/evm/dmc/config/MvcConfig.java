@@ -13,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import evm.dmc.web.service.RequestPath;
 import evm.dmc.web.service.Views;
 
+/**
+ * Configuration class for defining stuff for Spring MVC
+ */
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
