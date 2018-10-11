@@ -7,3 +7,6 @@ logs/
 logs/*
 target
 *.iml
+.idea
+.gitignore
+rest-examples
