@@ -10,9 +10,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+/**
+ * Configuration class for localization feature
+ */
 @Configuration
 public class LocaleConfig extends WebMvcConfigurerAdapter {
-	/*
+
+	/**
 	 * In order for our application to be able to determine which locale is
 	 * currently being used, we need to add a LocaleResolver bean:
 	 */
@@ -23,7 +27,7 @@ public class LocaleConfig extends WebMvcConfigurerAdapter {
 		return slr;
 	}
 
-	/*
+	/**
 	 * We need to add an interceptor bean that will switch to a new locale based
 	 * on the value of the lang parameter appended to a request:
 	 */
@@ -33,7 +37,10 @@ public class LocaleConfig extends WebMvcConfigurerAdapter {
 		lci.setParamName("lang");
 		return lci;
 	}
-	
+
+	/**
+	 * Adds LocaleChangeInterceptor bean to the InterceptorRegistry bean
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 	    registry.addInterceptor(localeChangeInterceptor());
