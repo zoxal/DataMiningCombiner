@@ -20,6 +20,9 @@ import evm.dmc.web.security.CustomAccessDeniedHandler;
 import evm.dmc.web.service.AccountService;
 import evm.dmc.web.service.RequestPath;
 
+/**
+ * Configuration class for security feature
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
