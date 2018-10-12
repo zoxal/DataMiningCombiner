@@ -96,7 +96,7 @@ public class Algorithm implements Serializable {
 			return null;
 //		if(srcAttributes != null && srcAttributes.isEmpty())
 //			srcAttributes = null;
-//		return Optional.ofNullable(srcAttributes).orElseGet(() -> dataSource.getAttributes());
+//		return Optional.ofNullable(srcAttributes).orElseGet(() -> dataSource.selectAttributes());
 		return srcAttributes.isEmpty() ? dataSource.getAttributes() : srcAttributes; 
 	}
 	

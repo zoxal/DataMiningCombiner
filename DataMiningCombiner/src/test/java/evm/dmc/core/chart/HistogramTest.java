@@ -1,38 +1,30 @@
 package evm.dmc.core.chart;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import evm.dmc.core.api.back.Plottable;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 
-import evm.dmc.DataMiningCombinerApplicationTests;
-import evm.dmc.weka.WekaTestBaseClass;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {DataMiningCombinerApplicationTests.class})
-@DataJpaTest  // TODO: remove where unneeded
-public class HistogramTest extends WekaTestBaseClass {
+public class HistogramTest {
 
 	@Autowired
 	Histogram histogram;
 
+	// TODO: initialize
+	Plottable data;
+
 	@Test
 	public final void testSaveToPng() throws IOException {
-		histogram.setAttribIndexesToPlot(data.getIndexByName("Account length"));
+		histogram.setAttribIndexesToPlot(0);
 		List<String> list = histogram.saveToPng(data, "Data/test");
 		assertFalse(list.isEmpty());
 		assertEquals(1, list.size());
@@ -46,8 +38,7 @@ public class HistogramTest extends WekaTestBaseClass {
 	@Test
 	public final void testSaveToPngSeveralArgs() throws IOException {
 		histogram
-				.setAttribIndexesToPlot(data.getIndexByName("State"), data.getIndexByName("Account length"),
-						data.getIndexByName("Total day minutes"), data.getIndexByName("Total day calls"))
+				.setAttribIndexesToPlot(0, 1, 2, 3)
 				.setWidth(2048);
 
 		List<String> list = histogram.saveToPng(data, "Data/testSeveral");
@@ -64,7 +55,7 @@ public class HistogramTest extends WekaTestBaseClass {
 
 	@Test
 	public final void testGetBufferedImage() {
-		histogram.setAttribIndexesToPlot(data.getIndexByName("Account length"));
+		histogram.setAttribIndexesToPlot(0);
 		List<BufferedImage> list = histogram.getBufferedImage(data);
 
 		assertFalse(list.isEmpty());

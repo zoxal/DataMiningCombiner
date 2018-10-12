@@ -1,14 +1,13 @@
 package evm.dmc.core.chart;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
+import evm.dmc.core.api.Data;
+import evm.dmc.core.api.back.Plottable;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 
-import evm.dmc.core.api.Data;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -20,13 +19,13 @@ public abstract class Chart implements Plotter {
 
 	private int[] selectedAttributes;
 
-	private BiFunction<Integer, Data, JFreeChart> chartKind;
+	private BiFunction<Integer, Plottable, JFreeChart> chartKind;
 
 	protected Chart() {
 		this.chartKind = getChartKind();
 	}
 
-	public Chart(BiFunction<Integer, Data, JFreeChart> chartKind) {
+	public Chart(BiFunction<Integer, Plottable, JFreeChart> chartKind) {
 		this.chartKind = chartKind;
 	}
 
@@ -65,7 +64,7 @@ public abstract class Chart implements Plotter {
 	}
 
 	// @PostConstruct
-	public final void setChartKind(BiFunction<Integer, Data, JFreeChart> chartKind) {
+	public final void setChartKind(BiFunction<Integer, Plottable, JFreeChart> chartKind) {
 		this.chartKind = chartKind;
 
 	}
@@ -77,7 +76,7 @@ public abstract class Chart implements Plotter {
 	 * @return Bi-argument function that accepts title for cart and data , and
 	 *         returns JFreeChart object
 	 */
-	protected abstract BiFunction<Integer, Data, JFreeChart> getChartKind();
+	protected abstract BiFunction<Integer, Plottable, JFreeChart> getChartKind();
 
 	/*
 	 * Output file format: {prfix}_{data.title()}_{random value}.png
@@ -89,7 +88,7 @@ public abstract class Chart implements Plotter {
 	 * 
 	 */
 	@Override
-	public List<String> saveToPng(Data data, String prefix) throws IOException {
+	public List<String> saveToPng(Plottable data, String prefix) throws IOException {
 		List<String> files = new LinkedList<>();
 		Random rnd = new Random(42);
 		for (int index : selectedAttributes) {
@@ -108,7 +107,7 @@ public abstract class Chart implements Plotter {
 	}
 
 	@Override
-	public List<BufferedImage> getBufferedImage(Data data) {
+	public List<BufferedImage> getBufferedImage(Plottable data) {
 		List<BufferedImage> images = new LinkedList<>();
 		for (int index : selectedAttributes) {
 			JFreeChart chart = chartKind.apply(index, data);
@@ -122,5 +121,4 @@ public abstract class Chart implements Plotter {
 		selectedAttributes = indexes.clone();
 		return this;
 	}
-
 }

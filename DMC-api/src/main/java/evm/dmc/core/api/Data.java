@@ -1,76 +1,30 @@
 package evm.dmc.core.api;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-
-import evm.dmc.core.api.back.HasMultiAttributes;
-import evm.dmc.core.api.back.Plottable;
 import evm.dmc.core.api.back.data.DataModel;
-import evm.dmc.core.api.exceptions.DataOperationException;
+import evm.dmc.core.api.exceptions.IndexOutOfRange;
 
 /**
  * General interface for any DMC data.
+ * Can be treated as table.
  *
- * @param <T>       type of data
  * @see DataModel
  */
-@Service
-@Scope("prototype")
-public interface Data<T> extends Plottable, HasMultiAttributes {
+// TODO: iterable?
+public interface Data extends HasMultiAttributes, HasNameAndDescription {
     /**
-     * Returns value of data.
+     * Returns value of single item in data set.
      *
-     * @return      data
+     * @param row               row number
+     * @param column            attribute index
+     * @return                  double value of item
+     * @throws IndexOutOfRange  if row or column is out of range
      */
-    T getData();
+    <T> T getValue(int row, int column) throws IndexOutOfRange;
 
     /**
-     * Sets the value of data.
+     * Returns number of row in data.
      *
-     * @param data  data value to set
+     * @return                  number of rows.
      */
-    void setData(T data);
-
-    /**
-     * Returns description of data.
-     *
-     * @return      description
-     */
-	default String getDescription() {
-		return "Unknown data";
-	}
-
-
-    /**
-     * Checks if data has multiple attributes.
-     *
-     * @return      true is data has multiple attributes
-     */
-	default boolean isMultiAttribute() {
-		return false;
-	}
-
-    /**
-     * Converts all values to string.
-     *
-     * @return      string representation
-     */
-	String getAllAsString();
-
-    /**
-     * Returns the model of data.
-     *
-     * @return                          data model
-     * @throws DataOperationException
-     */
-	DataModel getDataModel() throws DataOperationException;
-
-    /**
-     * Gets the preview of data model.
-     *
-     * @param previewRowsCount          number of rows in dataModel preview
-     * @return
-     * @throws DataOperationException
-     */
-	DataModel getDataModel(int previewRowsCount) throws DataOperationException;
+    int size();
 }

@@ -1,6 +1,5 @@
 package evm.dmc.core.api;
 
-import evm.dmc.api.model.FunctionDstModel;
 import evm.dmc.core.api.exceptions.StoreDataException;
 
 /**
@@ -24,20 +23,5 @@ public interface DMCDataSaver {
      * @throws StoreDataException       on any IO error
      * @throws IllegalStateException    if destination was not set
      */
-	void save(Data<?> data) throws StoreDataException, IllegalStateException;
-
-    /**
-     * Returns the saving function model.
-     *
-     * @return      function model
-     */
-	FunctionDstModel getDstModel();
-
-    /**
-     * Sets the saving function model.
-     *
-     * @param model     function model
-     * @return          object itself
-     */
-	DMCDataSaver setDstModel(FunctionDstModel model);
+	void save(Data data) throws StoreDataException, IllegalStateException;
 }

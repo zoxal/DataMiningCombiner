@@ -1,5 +1,7 @@
 package evm.dmc.core.chart;
 
+import evm.dmc.core.api.Data;
+import evm.dmc.core.api.Statistics;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -13,9 +15,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.function.BiFunction;
-
-import evm.dmc.core.api.Data;
-import evm.dmc.core.api.Statistics;
 
 @Service(ChartTypes.HISTOGRAM)
 @PropertySource("classpath:chart.properties")
