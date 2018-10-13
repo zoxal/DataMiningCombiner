@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
+import evm.dmc.webApi.dto.AccountDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,9 +69,9 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	@Transactional
-	public Account save(Account account) {
+	public Optional<Account> save(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		return accountRepository.save(account);
+		return Optional.ofNullable(accountRepository.save(account));
 	}
 
 	@Override
@@ -78,17 +79,17 @@ public class AccountServiceImpl implements AccountService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return createUser(getAccountByName(username));
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Account getAccountByName(String username) throws UsernameNotFoundException {
-		return  accountRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(username));
+		return accountRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(username));
 	}
 	
 	@Override
 	@Transactional
-	public Account get(Long id) {
-		return accountRepository.getOne(id);
+	public Optional<Account> get(Long id) {
+		return accountRepository.findById(id);
 	}
 	
 	@Override

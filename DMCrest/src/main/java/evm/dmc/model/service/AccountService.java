@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import evm.dmc.webApi.dto.AccountDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -12,10 +13,12 @@ import evm.dmc.api.model.account.Account;
 import evm.dmc.webApi.exceptions.ProjectNotFoundException;
 
 public interface AccountService extends UserDetailsService {
-	Account save(Account account);
+
+	Optional<Account> save(Account account);
 	
 	Account getAccountByName(String username) throws UsernameNotFoundException;
-	Account get(Long id);
+
+	Optional<Account> get(Long id);
 	
 	void signin(Account account);
 	
