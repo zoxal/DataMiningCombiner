@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(RestAccountsControllerOld.BASE_URL)
+@RequestMapping(RestAccountsController.BASE_URL)
 public class RestAccountsController extends AbstractRestCrudController<AccountDto> {
 
     public final static String BASE_URL = "/rest/user";
