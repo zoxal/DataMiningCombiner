@@ -2,8 +2,6 @@ package evm.dmc.webApi.dto;
 
 import java.time.Instant;
 
-import org.springframework.hateoas.ResourceSupport;
-
 import evm.dmc.api.model.account.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,8 +13,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AccountDto extends ResourceSupport {
-	
+public class AccountDto extends AbstractDto {
+
 	private Long accountId;
 	
 	private String userName;
@@ -30,4 +28,9 @@ public class AccountDto extends ResourceSupport {
 	protected Role role;
 	
 	private Instant created;
+
+	@Override
+	public Long getDtoId() {
+		return getAccountId();
+	}
 }
