@@ -3,6 +3,7 @@ package evm.dmc.webApi.dto;
 import java.sql.Timestamp;
 
 import evm.dmc.api.model.ProjectType;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +17,8 @@ import lombok.EqualsAndHashCode;
 public class ProjectDto extends AbstractDto {
 
 	private Long projectId;
+
+	private Long accountId;
 	
 	private ProjectType projectType;
 	
