@@ -2,8 +2,6 @@ package evm.dmc.webApi.dto;
 
 import java.util.Map;
 
-import org.springframework.hateoas.ResourceSupport;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,9 +12,11 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class MetaDataDto  extends ResourceSupport {
+public class MetaDataDto  extends AbstractDto {
 
 	private Long metaDataId;
+
+	private Long accountId;
 	
 	private String name;
 	
@@ -24,4 +24,8 @@ public class MetaDataDto  extends ResourceSupport {
 	
 	private Map<String, DataAttributeDto> attributes;
 
+	@Override
+	public Long getDtoId() {
+		return getMetaDataId();
+	}
 }
