@@ -12,13 +12,13 @@
     <artifactId>DMCFrameworkBase</artifactId>
 
     <properties>
-        <org.springframework.context.version>5.1.0.RELEASE</org.springframework.context.version>
+        <org.springframework.version>5.1.0.RELEASE</org.springframework.version>
     </properties>
 
     <!-- TODO: use dependencyManagement -->
     <dependencies>
-        <!-- TODO: split api in data and communication levels-->
-        <!-- TODO: remove spring from api modules-->
+        <!-- TODO: split evm.dmc.framework.api.evm.dmc.framework.api in data and communication levels-->
+        <!-- TODO: remove spring from evm.dmc.framework.api.evm.dmc.framework.api modules-->
         <dependency>
             <groupId>by.bsuir.evm</groupId>
             <artifactId>DMC-api</artifactId>
@@ -28,7 +28,13 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${org.springframework.context.version}</version>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${org.springframework.version}</version>
         </dependency>
     </dependencies>
 </project>

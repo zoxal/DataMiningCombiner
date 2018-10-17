@@ -1,11 +1,10 @@
 package evm.dmc.core.chart;
 
+import evm.dmc.core.api.HasNameAndDescription;
+import evm.dmc.core.api.back.Plottable;
+
 import java.io.IOException;
-
 import java.util.List;
-
-import evm.dmc.core.api.Data;
-import evm.dmc.core.api.back.HasNameAndDescription;
 
 public interface Plotter extends HasNameAndDescription {
 	/**
@@ -18,7 +17,7 @@ public interface Plotter extends HasNameAndDescription {
 	 * @return full file name
 	 * @throws IOException
 	 */
-	List<String> saveToPng(Data data, String prefix) throws IOException;
+	List<String> saveToPng(Plottable data, String prefix) throws IOException;
 
 	/**
 	 * Get buffered image in memory
@@ -27,7 +26,7 @@ public interface Plotter extends HasNameAndDescription {
 	 *            to plot
 	 * @return object that contains chart image
 	 */
-	List<java.awt.image.BufferedImage> getBufferedImage(Data data);
+	List<java.awt.image.BufferedImage> getBufferedImage(Plottable data);
 
 	Plotter setAttribIndexesToPlot(int... indexes);
 

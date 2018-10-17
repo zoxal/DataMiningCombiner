@@ -1,10 +1,7 @@
 package evm.dmc.framework.base;
 
-import evm.dmc.framework.base.discovery.annotations.DMCFunction;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Map;
 
 /**
  * Wraps the binding between function method and framework object.
@@ -13,10 +10,15 @@ import java.util.Map;
 public class DMCFunctionInvoker {
     private Object functionObject;
     private Method functionMethod;
+//    private List<DMCParameter> parameters;
 
     public DMCFunctionInvoker(Object functionObject, Method functionMethod) {
         this.functionObject = functionObject;
         this.functionMethod = functionMethod;
+//        arguments = new ArrayList<>(functionMethod.getParameterCount());
+//        for (Parameter p functionMethod.getParameters()) {
+//            parameters.add(DMCParameter.builder().name(p.getName()).)
+//        }
     }
 
     /**
@@ -32,4 +34,8 @@ public class DMCFunctionInvoker {
     public Object call(Object ... args) throws InvocationTargetException, IllegalAccessException {
         return functionMethod.invoke(functionObject, args);
     }
+
+//    public List<DMCParameter> getParameters() {
+//        return Collections.unmodifiableList(parameters);
+//    }
 }

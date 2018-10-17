@@ -1,5 +1,6 @@
 package evm.dmc.core.api.exceptions;
 
+// IndexOutOfBoundsException
 public class IndexOutOfRange extends IllegalArgumentException {
 	/**
 	 * 

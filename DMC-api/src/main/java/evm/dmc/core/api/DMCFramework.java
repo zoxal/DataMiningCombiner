@@ -1,13 +1,9 @@
 package evm.dmc.core.api;
 
-import evm.dmc.api.model.FrameworkModel;
 import evm.dmc.core.api.exceptions.NoSuchFunctionException;
 
 import java.util.Map;
 import java.util.Set;
-
-//import evm.dmc.core.api.DMCDataLoader;
-//import evm.dmc.core.api.DMCDataSaver;
 
 /**
  * The Interface DMCFramework. Interface describes common methods for using
@@ -15,7 +11,7 @@ import java.util.Set;
  *
  * @author id23cat
  */
-public interface DMCFramework {
+public interface DMCFramework extends HasNameAndDescription {
 	/**
 	 * Method must return list of short descriptors or identifiers of functions
 	 * provided by framework.
@@ -29,14 +25,14 @@ public interface DMCFramework {
 	 *
 	 * @return      available savers
 	 */
-	Map<String, Class<?>> getSaverDescriptors();
+	Map<String, Class<? extends DMCDataSaver>> getSaverDescriptors();
 
     /**
      * Returns list of available data loader names and their classes
      *
      * @return      available loaders
      */
-	Map<String, Class<?>> getLoaderDescriptors();
+	Map<String, Class<? extends DMCDataLoader>> getLoaderDescriptors();
 
 	/**
 	 * Gets the DMC function.
@@ -57,7 +53,7 @@ public interface DMCFramework {
      * @return                              function with specified class
      * @throws NoSuchFunctionException      if there is no suitable function
      */
-	<T> T getDMCFunction(String descriptor, Class<T> type) throws NoSuchFunctionException;
+	<T extends DMCFunction> T getDMCFunction(String descriptor, Class<T> type) throws NoSuchFunctionException;
 
     /**
      * Returns data saver by it's descriptor and class.
@@ -68,7 +64,8 @@ public interface DMCFramework {
      * @return                              saver with specified class
      * @throws NoSuchFunctionException      if there is no suitable saver
      */
-	<T> T getDMCDataSaver(String descriptor, Class<T> type) throws NoSuchFunctionException;
+	<T extends DMCDataLoader> T getDMCDataSaver(String descriptor,
+												Class<T> type) throws NoSuchFunctionException;
 
     /**
      * Returns data loader by it's descriptor and class.
@@ -79,19 +76,6 @@ public interface DMCFramework {
      * @return                              loader with specified class
      * @throws NoSuchFunctionException      if there is no suitable loader
      */
-	<T> T getDMCDataLoader(String descriptor, Class<T> type) throws NoSuchFunctionException;
-
-    /**
-     * Sets the framework model.
-     *
-     * @param frameworkModel    framework model
-     */
-	void setFrameworkModel(FrameworkModel frameworkModel);
-
-    /**
-     * Returns the framework model.
-     *
-     * @return  framework model
-     */
-	FrameworkModel getFrameworkModel();
+	<T extends DMCDataSaver> T getDMCDataLoader(String descriptor,
+                                                Class<T> type) throws NoSuchFunctionException;
 }
